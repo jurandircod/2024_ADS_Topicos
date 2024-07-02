@@ -1,0 +1,12 @@
+Tabela:      cliente
+id           int PK AI
+nome         varchar (100) not null
+tipo         varchar (2) not null (PF, PJ)
+cpfcnpj      varchar (20) not null
+endereco     varchar (100)
+bairro       varchar (100)
+cidade       varchar (100)
+uf           varchar(2)
+cep          varchar(9)
+status       int(1) not null (1 - ativo, 0 - inativo)
+datacadastro datetime
