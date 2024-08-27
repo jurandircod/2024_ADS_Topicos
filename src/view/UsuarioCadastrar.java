@@ -50,7 +50,19 @@ public class UsuarioCadastrar extends javax.swing.JFrame {
 
         jLabel2.setText("Nome:");
 
+        jtfNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNomeActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("E-mail:");
+
+        jtfEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfEmailActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Senha:");
 
@@ -138,40 +150,45 @@ public class UsuarioCadastrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        
+
         //1- pegar das informações do formulario
         String nome = jtfNome.getText();
         String email = jtfEmail.getText();
-        String senha =  new String (jtfSenha.getPassword());
-        
-        try {
-            //criação do objeto usuario
-            Usuario u = new Usuario();
-            u.setNome(nome);
-            u.setEmail(email);
-            u.setSenha(senha);
-            
-            UsuarioDao dao = new UsuarioDao();
-            dao.inserir(u);//passo o usuario para o dao inserir
-            
-            limparCampos();
-            
-            JOptionPane.showMessageDialog(this, "Usuario cadastrado com sucesso !");
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Erro ao cadastrar: " + e.getMessage());
+        String senha = new String(jtfSenha.getPassword());
+
+        if (nome.length() > 1 || email.length() > 5 || senha.length() > 6) {
+
+            try {
+                //criação do objeto usuario
+                Usuario u = new Usuario();
+
+                u.setNome(nome);
+                u.setEmail(email);
+                u.setSenha(senha);
+
+                UsuarioDao dao = new UsuarioDao();
+                dao.inserir(u);//passo o usuario para o dao inserir
+
+                limparCampos();
+
+                JOptionPane.showMessageDialog(this, "Usuario cadastrado com sucesso !");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar: " + e.getMessage());
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"erro preencha todos os campos");
         }
-        
-                
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
-   
-    private void limparCampos (){  
-        
+
+    private void limparCampos() {
+
         jtfNome.setText("");
         jtfEmail.setText("");
-        jtfSenha.setText("");              
+        jtfSenha.setText("");
     }
-    
+
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnFecharActionPerformed
@@ -179,6 +196,15 @@ public class UsuarioCadastrar extends javax.swing.JFrame {
     private void jtfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfSenhaActionPerformed
+
+    private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jtfNomeActionPerformed
+
+    private void jtfEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfEmailActionPerformed
 
     /**
      * @param args the command line arguments
