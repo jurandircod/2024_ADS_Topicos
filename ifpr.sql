@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01/05/2024 às 01:34
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 14/08/2024 às 01:33
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,17 +38,33 @@ CREATE TABLE `cliente` (
   `bairro` varchar(100) DEFAULT NULL,
   `cidade` varchar(100) DEFAULT NULL,
   `uf` varchar(2) DEFAULT NULL,
-  `cep` varchar(10) DEFAULT NULL,
+  `cep` varchar(9) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `datacadastro` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Despejando dados para a tabela `cliente`
+-- Estrutura para tabela `usuario`
 --
 
-INSERT INTO `cliente` (`id`, `nome`, `tipo`, `cpfcnpj`, `endereco`, `bairro`, `cidade`, `uf`, `cep`, `status`, `datacadastro`) VALUES
-(1, 'al', 'PF', '02175148980', NULL, NULL, NULL, NULL, NULL, 1, '2024-04-30 20:08:20');
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `datacadastro` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `datacadastro`) VALUES
+(1, 'FDFD', 'FDFD', '[C@6c8f39f2', '2024-08-13 19:21:43'),
+(2, '123', '123', '123', '2024-08-13 19:34:07'),
+(3, 'Lucas', 'llfurini2002@gmail.com', '123', '2024-08-13 20:02:27');
 
 --
 -- Índices para tabelas despejadas
@@ -61,6 +77,12 @@ ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -68,7 +90,13 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
